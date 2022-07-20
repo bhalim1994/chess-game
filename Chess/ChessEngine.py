@@ -93,7 +93,23 @@ class GameState():
     Get all the rook moves for the rook located at row, col and add these moves to the list.
     '''
     def getRookMoves(self, r, c, moves):
-        pass
+        directions = ((-1, 0), (0, -1), (1, 0), (0, 1))  # Up, left, down, right
+        enemyColor = 'b' if self.whiteToMove else 'w'
+        for d in directions:
+            for i in range(1, 8):
+                endRow = r + d[0] * i
+                endCol = c + d[1] * i
+                if 0 <= endRow < 8 and 0 <= endCol < 8:  # On the board
+                    endPiece = self.board[endRow][endCol]
+                    if endPiece == '--':  # Empty space
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                    elif endPiece [0] == enemyColor:  # Enemy piece
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                        break
+                    else:  # Friendly piece
+                        break
+                else:  # Off the board
+                    break
 
     '''
     Get all the knight moves for the knight located at row, col and add these moves to the list.
@@ -105,7 +121,23 @@ class GameState():
     Get all the bishop moves for the bishop located at row, col and add these moves to the list.
     '''
     def getBishopMoves(self, r, c, moves):
-        pass
+        directions = ((-1, -1), (-1, 1), (1, -1), (1, 1))  # Upper-left, Upper-right, Bottom-left, Bottom-right
+        enemyColor = 'b' if self.whiteToMove else 'w'
+        for d in directions:
+            for i in range(1, 8):
+                endRow = r + d[0] * i
+                endCol = c + d[1] * i
+                if 0 <= endRow < 8 and 0 <= endCol < 8:  # On the board
+                    endPiece = self.board[endRow][endCol]
+                    if endPiece == '--':  # Empty space
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                    elif endPiece [0] == enemyColor:  # Enemy piece
+                        moves.append(Move((r, c), (endRow, endCol), self.board))
+                        break
+                    else:  # Friendly piece
+                        break
+                else:  # Off the board
+                    break
 
     '''
     Get all the queen moves for the queen located at row, col and add these moves to the list.
