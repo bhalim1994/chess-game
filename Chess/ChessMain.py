@@ -18,7 +18,7 @@ def loadImages():
     pieces = ['wp', 'wR', 'wN', 'wB', 'wK', 'wQ', 'bp', 'bR', 'bN', 'bB', 'bK', 'bQ']
     for piece in pieces:
         IMAGES[piece] = p.transform.scale(p.image.load("images/" + piece + ".png"), (SQ_SIZE, SQ_SIZE))
-    # Note: We can now access an image by saying 'IMAGES['wp']'
+    # Note: Can now access an image by saying 'IMAGES['wp']'
 
 '''
 The main driver for the code. Will handle user input and update graphics.
@@ -58,9 +58,9 @@ def main():
                         gs.makeMove(move)
                         moveMade = True
                         sqSelected = ()  # Reset user clicks
-                        playerClicks = []  # Clear player clicks
+                        playerClicks = []  # Reset player clicks
                     else:  # Invalid move (If user's second click is a second piece because they changed their minds)
-                        playerClicks = [sqSelected]
+                        playerClicks = [sqSelected]  # Set user's second click to the first click
 
                 # Key handlers
             elif e.type == p.KEYDOWN:

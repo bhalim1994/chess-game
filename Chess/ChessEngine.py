@@ -112,20 +112,6 @@ class GameState():
                     break
 
     '''
-    Get all the knight moves for the knight located at row, col and add these moves to the list.
-    '''
-    def getKnightMoves(self, r, c, moves):
-        knightMoves = ((-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1))
-        enemyColor = 'b' if self.whiteToMove else 'w'
-        for km in knightMoves:
-            endRow = r + km[0]
-            endCol = c + km[1]
-            if 0 <= endRow < 8 and 0 <= endCol < 8:  # On the board
-                endPiece = self.board[endRow][endCol]
-                if endPiece[0] == enemyColor or endPiece == '--':
-                    moves.append(Move((r, c), (endRow, endCol), self.board))
-
-    '''
     Get all the bishop moves for the bishop located at row, col and add these moves to the list.
     '''
     def getBishopMoves(self, r, c, moves):
@@ -153,6 +139,20 @@ class GameState():
     def getQueenMoves(self, r, c, moves):
         self.getRookMoves(r, c, moves)
         self.getBishopMoves(r, c, moves)
+
+    '''
+    Get all the knight moves for the knight located at row, col and add these moves to the list.
+    '''
+    def getKnightMoves(self, r, c, moves):
+        knightMoves = ((-2, -1), (-2, 1), (-1, -2), (-1, 2), (1, -2), (1, 2), (2, -1), (2, 1))
+        enemyColor = 'b' if self.whiteToMove else 'w'
+        for km in knightMoves:
+            endRow = r + km[0]
+            endCol = c + km[1]
+            if 0 <= endRow < 8 and 0 <= endCol < 8:  # On the board
+                endPiece = self.board[endRow][endCol]
+                if endPiece[0] == enemyColor or endPiece == '--':
+                    moves.append(Move((r, c), (endRow, endCol), self.board))
 
     '''
     Get all the king moves for the king located at row, col and add these moves to the list.
