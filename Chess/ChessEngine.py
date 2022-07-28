@@ -26,8 +26,8 @@ class GameState():
         self.moveLog = []
         self.whiteKingLocation = (7, 4)
         self.blackKingLocation = (0, 4)
-        self.checkMate = False  # When King has no valid moves and is in check
-        self.staleMate = False  # When King has no valid moves and is not in check
+        self.checkmate = False  # When King has no valid moves and is in check
+        self.stalemate = False  # When King has no valid moves and is not in check
         self.enpassantPossible = ()  # Coordinates for the square where en-passant capture is possible
         self.currentCastlingRight = CastleRights(True, True, True, True)
         self.castleRightsLog = [CastleRights(self.currentCastlingRight.wks, self.currentCastlingRight.bks,
@@ -178,12 +178,12 @@ class GameState():
             self.undoMove()  # Cancel out the makeMove() since it's just checking
         if len(moves) == 0:  # Checkmated or stalemated
             if self.inCheck():
-                self.checkMate = True
+                self.checkmate = True
             else:
-                self.staleMate = True
+                self.stalemate = True
         else:  # If we undid a move and checkmate/stalemate turned to true, need to turn back to False
-            self.checkMate = False
-            self.staleMate = False
+            self.checkmate = False
+            self.stalemate = False
 
         self.enpassantPossible = tempEnpassantPossible
         self.currentCastlingRight = tempCastleRights
